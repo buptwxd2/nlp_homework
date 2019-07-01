@@ -28,6 +28,10 @@ def create_grammer(grammer_str, split_separator='=', line_separator="\n"):
     for line in grammer_str.split(line_separator):
         print (line)
         if not line.strip(): continue
-        print(line.split(split_separator))
-    pass
+        exp, stmt = line.split(split_separator)
+        grammer[exp.strip()] = [s.strip() for s in stmt.split('|') if s.strip()]
 
+    return grammer
+
+human_grammer = create_grammer(human)
+print (human_grammer)
